@@ -7,7 +7,7 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
         <!-- Styles -->
         <style>
@@ -40,6 +40,12 @@
                 top: 18px;
             }
 
+            .top-left {
+                position: absolute;
+                left: 10px;
+                top: 18px;
+            }
+
             .content {
                 text-align: center;
             }
@@ -58,6 +64,8 @@
                 text-transform: uppercase;
             }
 
+
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -65,40 +73,38 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            @if (Route::has('user.login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/user/home') }}">Home</a>
                     @else
                         <a href="{{ route('user.login') }}">Login</a>
-                        <a href="{{ route('admin.login') }}">customer_Login</a>
                         @if (Route::has('user.register'))
-                            <a href="{{ route('user.register') }}">Register</a>
-                            <a href="{{ route('admin.register') }}">customer_Register</a>
+                        <a href="{{ route('user.register') }}">Register</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
+            @if(Route::has('admin.login'))
+                <div class="top-left links">
+                    @auth
+                        <a href="{{ url('/admin/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('admin.login') }}">admin_Login</a>
+                         @if (Route::has('admin.register'))
+                        <a href="{{ route('admin.register') }}">admin_Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
             <div class="content">
                 <div class="title m-b-md">
                     apasto
                 </div>
-                <a href="{{ route('user.login') }}">Login</a>
-                        <a href="{{ route('admin.login') }}">customer_Login</a>
-<a href="{{ route('user.register') }}">Register</a>
-                            <a href="{{ route('admin.register') }}">admin_Register</a>
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+               
             </div>
         </div>
     </body>
 </html>
+
